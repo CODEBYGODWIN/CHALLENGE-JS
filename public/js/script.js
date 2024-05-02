@@ -6,15 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const userList = document.getElementById('userList');
 
     showRegisterLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        loginContainer.classList.add('hidden');
+        event.preventDefault(); // Prévenir l'action par défaut du lien
         registerContainer.classList.remove('hidden');
+        loginContainer.classList.add('hidden');
     });
 
     showLoginLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        registerContainer.classList.add('hidden');
+        event.preventDefault(); // Prévenir l'action par défaut du lien
         loginContainer.classList.remove('hidden');
+        registerContainer.classList.add('hidden');
     });
 
     const displayUsers = () => {
