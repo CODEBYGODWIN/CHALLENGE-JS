@@ -3,64 +3,92 @@ document.addEventListener('DOMContentLoaded', function() {
     const registerContainer = document.getElementById('registerContainer');
     const showRegisterLink = document.getElementById('showRegister');
     const showLoginLink = document.getElementById('showLogin');
-    const userList = document.getElementById('userList');
-
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    
     showRegisterLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prévenir l'action par défaut du lien
+        event.preventDefault();
         registerContainer.classList.remove('hidden');
         loginContainer.classList.add('hidden');
     });
-
+    
     showLoginLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prévenir l'action par défaut du lien
+        event.preventDefault();
         loginContainer.classList.remove('hidden');
         registerContainer.classList.add('hidden');
     });
 
-    const displayUsers = () => {
-        userList.innerHTML = '';
-        for (let i = 0; i < localStorage.length; i++) {
-            const email = localStorage.key(i);
-            const user = JSON.parse(localStorage.getItem(email));
-            const listItem = document.createElement('li');
-            listItem.textContent = `Email: ${email}, Mot de passe: ${user.password}`;
-            userList.appendChild(listItem);
-        }
-    };
-
-    displayUsers();
-
-    document.getElementById('registerForm').addEventListener('submit', function(event) {
+    loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const email = document.getElementById('registerEmail').value;
-        const password = document.getElementById('registerPassword').value;
-        const existingUser = JSON.parse(localStorage.getItem(email));
-
-        if (existingUser) {
-            alert('Un compte avec cet email existe déjà.');
-        } else {
-            const newUser = { email, password };
-            localStorage.setItem(email, JSON.stringify(newUser));
-            alert('Compte créé avec succès. Vous pouvez maintenant vous connecter.');
-            displayUsers();
-            document.getElementById('registerForm').reset();
-            registerContainer.classList.add('hidden');
-            loginContainer.classList.remove('hidden');
-        }
+        
+        console.log('Formulaire de connexion soumis');
+    
+        const firstName = document.getElementById('loginName').value;
+        const password = document.getElementById('loginPassword').value;
+    
+        console.log('Prénom:', firstName);
+        console.log('Mot de passe:', password);
+        
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ firstName, password })
+        })
+        .then(response => {
+            console.log('Réponse de la requête:', response);
+            if (response.ok) {
+                // Récupérer l'email de l'utilisateur à partir de la réponse JSON
+                return response.json();
+            } else if (response.status === 401) {
+                // Alerte si les identifiants sont incorrects
+                alert('Identifiants incorrects. Veuillez réessayer.');
+            } else {
+                throw new Error('Erreur lors de la connexion.');
+            }
+        })
+        .then(data => {
+            // Stocker l'email de l'utilisateur dans le stockage local
+            localStorage.setItem('userEmail', data.email);
+    
+            // Redirection vers la page budget.html en cas de connexion réussie
+            window.location.href = '/budget.html';
+        })
+        .catch(error => {
+            console.error('Erreur lors de la connexion :', error);
+            alert('Une erreur est survenue lors de la connexion. Veuillez réessayer.');
+        });
     });
 
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
+    registerForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        const user = JSON.parse(localStorage.getItem(email));
-
-        if (user && user.password === password) {
-            alert('Connexion réussie.');
-            // Redirection vers la page de gestion de budgets
-            // window.location.href = 'budget.html';
-        } else {
-            alert('Identifiants incorrects.');
-        }
+        
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+        const firstName = document.getElementById('registerFirstName').value;
+        const lastName = document.getElementById('registerLastName').value;
+        
+        fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password, firstName, lastName })
+        })
+        .then(response => {
+            if (response.ok) {
+                // Alerte si le compte est créé avec succès
+                alert('Compte créé avec succès.');
+                // Réinitialisation du formulaire d'inscription
+                registerForm.reset();
+            } else {
+                throw new Error('Erreur lors de la création du compte.');
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la création du compte :', error);
+            alert('Une erreur est survenue lors de la création du compte. Veuillez réessayer.');
+        });
     });
 });

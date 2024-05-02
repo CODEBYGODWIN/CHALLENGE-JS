@@ -11,8 +11,8 @@
         <div id="loginContainer" class="form-container">
             <h1>Connexion</h1>
             <form id="loginForm">
-                <label for="loginEmail">Email :</label>
-                <input type="email" id="loginEmail" required>
+                <label for="loginName">Nom Utilisateur :</label>
+                <input type="text" id="loginName" required>
                 <label for="loginPassword">Mot de passe :</label>
                 <input type="password" id="loginPassword" required>
                 <button type="submit">Se connecter</button>
@@ -22,6 +22,10 @@
         <div id="registerContainer" class="form-container hidden">
             <h1>Inscription</h1>
             <form id="registerForm">
+                <label for="registerFirstName">Nom Utilisateur :</label>
+                <input type="text" id="registerFirstName" required>
+                <label for="registerLastName">Nom de famille :</label>
+                <input type="text" id="registerLastName" required>
                 <label for="registerEmail">Email :</label>
                 <input type="email" id="registerEmail" required>
                 <label for="registerPassword">Mot de passe :</label>
@@ -29,12 +33,6 @@
                 <button type="submit">S'inscrire</button>
             </form>
             <p>Déjà un compte ? <a href="#" id="showLogin">Connectez-vous</a></p>
-        </div>
-    </div>
-    <div class="container">
-        <div id="userListContainer">
-            <h2>Utilisateurs Enregistrés :</h2>
-            <ul id="userList"></ul>
         </div>
     </div>
     <script src="js/script.js"></script>

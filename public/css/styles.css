@@ -1,3 +1,4 @@
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -23,6 +24,7 @@ body {
     margin-bottom: 5px;
 }
 
+.form-container input[type="text"],
 .form-container input[type="email"],
 .form-container input[type="password"] {
     width: 100%;
