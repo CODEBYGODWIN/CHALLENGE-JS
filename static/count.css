@@ -99,20 +99,25 @@ body{
     max-width: 700px;
 }
 
-/* .itemContainer .container{
-    width: 49%;
-    border-radius: 15px;
-    background-color: blue;
-} */
-
-.container .item{
+.itemIncome,
+.expense{
     width: 100%;
     background-color: white;
     border-radius:15px ;
-    margin: 5px 0;
     display: flex;
-    justify-content: space-between;
-    padding: 5px 40px;
-    position: relative;
+    justify-content: space-around;
+    padding: 5px 30px;
     align-items: center;
+    margin: 5px 0px;
+}
+
+.itemIncome section,
+.expense section{
+    display: flex;
+    flex-direction: row;
+}
+
+.itemIncome section p,
+.expense section p{
+    margin: 0px 2px;
 }
