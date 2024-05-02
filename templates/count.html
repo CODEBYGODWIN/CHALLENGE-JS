@@ -43,33 +43,39 @@
     
             <section class="inputContainer">
                 <input type="text" class="description" id="description" placeholder="Description">
+                <input type="date" class="date" id="date">
                 <input type="number" class="amount" id="amount" placeholder="Montant">
+                
             </section>
     
             <section class="btnContainer">
-                <button id="addIncome">Ajouté l'argent</button>
-                <button id="addExpense">Retirer l'argent</button>
+                <button class="addIncome" id="addIncome">Ajouté l'argent</button>
+                <button class="addExpense" id="addExpense">Retirer l'argent</button>
             </section>
     
-            <section class="">
-                <section>
+            <section class="itemContainer">
+                <section class="container">
                     <h2>Argent ajouté</h2>
-                    <section>
+                    <section class="itemIncome">
                         <p>descrition de l'ajout d'argent</p>
                         <section>
                             <p>10</p>
                             <p>€</p>
                         </section>
+                        <span class="mdi mdi-trash-can-outline"></span>
                     </section>
                 </section>
-                <section>
+
+                <section class="container">
                     <h2>Argent dépensé</h2>
                     <section>
                         <p>descrition de la depense</p>
-                        <section>
+                        <section class="itemExpense">
                             <p>10</p>
                             <p>€</p>
+                            
                         </section>
+                        <span class="mdi mdi-trash-can-outline"></span>
                     </section>
                 </section>
             </section>

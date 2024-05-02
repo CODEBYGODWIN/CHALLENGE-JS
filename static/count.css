@@ -60,10 +60,59 @@ body{
     outline: none;;
 }
 
-.imputContainer .description{
+.inputContainer .description{
     width: 300px;
 }
 
-.imputContainer .amount{
-    width: 300px;
+.inputContainer .amount{
+    width: 100px;
+}
+
+.btnContainer{
+    margin:10px 0 3rem;
+}
+
+.btnContainer .addIncome,
+.btnContainer .addExpense{
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+
+}
+
+.btnContainer .addIncome{
+    background-color: green;
+}
+
+.btnContainer .addExpense{
+    background-color: red;
+}
+
+.itemContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    max-width: 700px;
+}
+
+/* .itemContainer .container{
+    width: 49%;
+    border-radius: 15px;
+    background-color: blue;
+} */
+
+.container .item{
+    width: 100%;
+    background-color: white;
+    border-radius:15px ;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 40px;
+    position: relative;
+    align-items: center;
 }
