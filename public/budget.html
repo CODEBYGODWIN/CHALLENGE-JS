@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Budget</title>
+    <link rel="stylesheet" href="css/budget-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestion de Budget</h1>
+        <div id="userData"></div>
+    </div>
+    <script>
+        // Récupération de l'email de l'utilisateur depuis le stockage local
+        const userEmail = localStorage.getItem('userEmail');
+        if (userEmail) {
+            // Utiliser l'email pour récupérer les données de l'utilisateur
+            fetch(`/user/${userEmail}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur lors de la récupération des données utilisateur.');
+                    }
+                    return response.json();
+                })
+                .then(user => {
+                    const userData = document.getElementById('userData');
+                    userData.innerHTML = `
+                        <h2>Informations Utilisateur</h2>
+                        <p>Nom: ${user.firstName}</p>
+                        <p>Prénom: ${user.lastName}</p>
+                        <p>Email: ${user.email}</p>
+                    `;
+                })
+                .catch(error => console.error(error));
+        } else {
+            console.error('Aucun utilisateur connecté.');
+        }
+    </script>
+</body>
+</html>
