@@ -20,8 +20,8 @@ const UICtrl = (function(){
         incomeItem: '.income__amount',
         expenseItem: '.expense__amount',
         itemsContainer: '.items__container'
-        categoryList: `#category`,
-        subcategoryList: `#subcategory`
+        // categoryList: `#category`,
+        // subcategoryList: `#subcategory`
     }
     // Méthodes publiques
     return{
@@ -49,9 +49,9 @@ const UICtrl = (function(){
             };
         },
         //Fonction pour obtenir le choix d'utilisateur 
-        getCategoriesInput: function(){
-            return categories;
-        }
+        // getCategoriesInput: function(){
+        //     return categories;
+        // }
 
 
         // Fonction pour ajouter un élément de revenu à l'interface utilisateur
