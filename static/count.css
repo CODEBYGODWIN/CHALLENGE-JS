@@ -28,10 +28,13 @@ h1 a {
 .budgetNumber{
     display: flex;
     justify-content: space-between;
-    width: 70%;
+    width: 1000px;
     max-width: 700px;
     margin: 1rem 0 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
 
 .number{
     display: flex;
@@ -40,6 +43,7 @@ h1 a {
     align-items: center;
     background-color: white;
     padding: 10px;
+    margin: 10px;
     border-radius: 15px;
 }
 
@@ -48,6 +52,10 @@ h1 a {
     display: flex;
 
 
+}
+
+.amountContainer p{
+    margin: 10px 2px;
 }
 
 .nbEarned{
@@ -62,12 +70,19 @@ h1 a {
     color: red;
 }
 
+.inputContainer{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+max-width: 70%;
+}
+
 .inputContainer input{
     border: none;
     padding: 10px;
     margin: 10px 5px;
     border-radius: 15px;
-    outline: none;;
+    outline: none;
 }
 
 .inputContainer .description{
@@ -80,17 +95,20 @@ h1 a {
 
 .btnContainer{
     margin:10px 0 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .btnContainer .addIncome,
 .btnContainer .addExpense{
     border: none;
     padding: 10px 20px;
+    margin: 10px 5px;
     color: white;
     border-radius: 15px;
     outline: none;
     cursor: pointer;
-
 
 }
 
@@ -114,30 +132,64 @@ h1 a {
     background-color: rgb(122, 0, 0);
 }
 
+
+
+
+
+
+
+
+
+
+
 .itemContainer{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 70%;
-    max-width: 700px;
+    justify-content: space-around;
+    align-items: start;
+
+
+
+
+
+}
+
+@media screen and (max-width: 1000px) {
+    .itemContainer {
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: column;
+    }
+}
+
+.containerCount{
+    margin: 20px;
+
 }
 
 .itemIncome,
 .expense{
-    width: 100%;
     background-color: white;
     border-radius:15px ;
     display: flex;
-    justify-content: space-around;
-    padding: 2px 30px;
+    justify-content: space-between;
+    padding: 1em 1em;
     align-items: center;
     margin: 5px 0px;
+
 }
+
+
 
 .itemIncome section,
 .expense section{
     display: flex;
     flex-direction: row;
+}
+
+.itemIncome p,
+.expense p{
+    max-width: 200px;
+    margin: auto 10px;
 }
 
 .itemIncome section p,
@@ -146,9 +198,32 @@ h1 a {
 }
 
 
-/* .spanSupr:hover{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.spanSupr{
+    cursor: pointer;
+    padding: 5px;
+}
+
+.spanSupr:hover{
     cursor: pointer;
     background-color: rgb(255, 0, 0);
-    border-radius: 100%;
-    margin: 5px;
-} */
+    border-radius: 100px;
+
+}
