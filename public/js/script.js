@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Stocker l'email de l'utilisateur dans le stockage local
             localStorage.setItem('userEmail', data.email);
     
-            // Redirection vers la page budget.html en cas de connexion réussie
-            window.location.href = '/budget.html';
+            // Redirection vers la page count.html en cas de connexion réussie
+            window.location.href = '/count.html';
         })
         .catch(error => {
             console.error('Erreur lors de la connexion :', error);
