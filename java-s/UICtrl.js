@@ -1,3 +1,4 @@
+
 // CONTRÔLEUR DE L'INTERFACE UTILISATEUR
 const UICtrl = (function(){
 
@@ -21,7 +22,7 @@ const UICtrl = (function(){
         expenseItem: '.expense__amount',
         itemsContainer: '.items__container'
         // categoryList: `#category`,
-        // subcategoryList: `#subcategory`
+        //subcategoryList: `#subcategory`
     }
     // Méthodes publiques
     return{
@@ -49,31 +50,31 @@ const UICtrl = (function(){
             };
         },
         //Fonction pour obtenir le choix d'utilisateur 
-        // getCategoriesInput: function(){
-        //     return categories;
-        // }
+        getCategories: function(){
+            return categories;
+        },
 
 
         // Fonction pour ajouter un élément de revenu à l'interface utilisateur
         addIncomeItem: function(item){
-            // Créer une nouvelle div
-            const div = document.createElement('div');
+            // Créer une nouvelle section
+            const section = document.createElement('section');
             // Ajouter une classe
-            div.classList = 'item income';
+            section.classList = 'item income';
             // Ajouter un identifiant à l'élément
-            div.id = `item-${item.id}`;
+            section.id = `item-${item.id}`;
             // Ajouter du HTML
-            div.innerHTML = `
+            section.innerHTML = `
             <h4>${item.description}</h4>
-            <div class="item__income">
+            <section class="item__income">
                 <p class="symbol">$</p>
                 <span class="income__amount">${item.amount}</span>
                 <p class="date">${item.date.toLocaleDateString()}</p>
-            </div>
+            </section>
             <i class="far fa-trash-alt"></i>
             `;
             // Insérer le revenu dans la liste
-            document.querySelector(UISelectors.incomeList).insertAdjacentElement('beforeend', div);
+            document.querySelector(UISelectors.incomeList).insertAdjacentElement('beforeend', section);
         },
         // Fonction pour effacer les champs de saisie
         clearInputs: function(){
@@ -96,24 +97,24 @@ const UICtrl = (function(){
         },
         // Fonction pour ajouter un élément de dépense à l'interface utilisateur
         addExpenseItem: function(item){
-            // Créer une nouvelle div
-            const div = document.createElement('div');
+            // Créer une nouvelle section
+            const section = document.createElement('section');
             // Ajouter une classe
-            div.classList = 'item expense';
+            section.classList = 'item expense';
             // Ajouter un identifiant à l'élément
-            div.id = `item-${item.id}`;
+            section.id = `item-${item.id}`;
             // Ajouter du HTML
-            div.innerHTML = `
+            section.innerHTML = `
             <h4>${item.description}</h4>
-            <div class="item__expense">
+            <section class="item__expense">
                 <p class="symbol">$</p>
                 <span class="expense__amount">${item.amount}</span>
                 <p class="date">${item.date.toLocaleDateString()}</p> 
-            </div>
+            </section>
             <i class="far fa-trash-alt"></i>
             `;
             // Insérer la dépense dans la liste
-            document.querySelector(UISelectors.expensesList).insertAdjacentElement('beforeend', div);
+            document.querySelector(UISelectors.expensesList).insertAdjacentElement('beforeend', section);
         },
         // Fonction pour mettre à jour le total des dépenses
         updateSpent: function(){
@@ -147,6 +148,21 @@ const UICtrl = (function(){
                 amountDelete.remove();
             }
         }
+        // function pour ajouter les options des catégories et sous-catégories
+        // addCategories: function(){
+        //     const categorySelect = document.querySelector(UISelectors.categoryList);
+        //     const subcategorySelect = document.querySelector(UISelectors.subcategoryList);
+
+
+
+
+
+        // }.
+
+
+
+
+
     }
 })();
 
