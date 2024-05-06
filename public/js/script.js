@@ -39,8 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => {
             console.log('Réponse de la requête:', response);
             if (response.ok) {
-                // Récupérer l'email de l'utilisateur à partir de la réponse JSON
-                return response.json();
+                localStorage.setItem('userEmail', firstName);
+                const bro = localStorage.getItem('userEmail');
+                console.log(bro);
+                window.location.href = '/budget2.html';
             } else if (response.status === 401) {
                 // Alerte si les identifiants sont incorrects
                 alert('Identifiants incorrects. Veuillez réessayer.');
@@ -48,13 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Erreur lors de la connexion.');
             }
         })
-        .then(data => {
+        /*.then(data => {
             // Stocker l'email de l'utilisateur dans le stockage local
-            localStorage.setItem('userEmail', data.email);
-    
-            // Redirection vers la page budget.html en cas de connexion réussie
-            window.location.href = '/budget.html';
-        })
+           
+        })*/
         .catch(error => {
             console.error('Erreur lors de la connexion :', error);
             alert('Une erreur est survenue lors de la connexion. Veuillez réessayer.');
