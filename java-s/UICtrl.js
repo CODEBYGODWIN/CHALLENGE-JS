@@ -1,17 +1,14 @@
 // CONTRÔLEUR DE L'INTERFACE UTILISATEUR
 const UICtrl = (function(){
 
-    const categories = { "Dépenses courant": ["Alimentation", "Transport"], 
-        "Dépense personnelles" : ["Vétements et accessoires", "Soins personnels"]
-
-    };
-    
     // Sélecteurs d'interface utilisateur
     const UISelectors = {
         incomeBtn: '#add__income',
         expenseBtn: '#add__expense',
         description: '#description',
         amount: '#amount',
+        category: '#category',
+        subCategory: '#subCategory',
         moneyEarned: '#amount__earned',
         moneyAvailable: '#amount__available',
         moneySpent: '#amount__spent',
@@ -20,9 +17,19 @@ const UICtrl = (function(){
         incomeItem: '.income__amount',
         expenseItem: '.expense__amount',
         itemsContainer: '.items__container'
-        // categoryList: `#category`,
-        // subcategoryList: `#subcategory`
+        
     }
+
+    // Liste des catégories et sous-catégories
+    const categories = {
+        "Dépenses courantes": ["Alimentation", "Transport", "Logement", "Factures", "Assurance", "Télécommunications", "Santé", "Divertissement"],
+        "Dépenses personnelles": ["Vêtements et accessoires", "Soins personnels", "Loisirs", "Vacances et voyages", "Cadeaux"],
+        "Dépenses liées à l'éducation": ["Frais de scolarité", "Livres et fournitures scolaires", "Cours et formations"],
+        "Dépenses liées aux finances": ["Remboursement de prêts", "Frais bancaires", "Investissements"],
+        "Épargne et investissement": ["Épargne d'urgence", "Épargne pour les objectifs à court terme", "Épargne pour les objectifs à long terme", "Investissements"],
+        "Revenus": ["Salaire"]
+    };
+
     // Méthodes publiques
     return{
         // Fonction pour obtenir les sélecteurs d'interface utilisateur
@@ -41,19 +48,50 @@ const UICtrl = (function(){
                 amountInput: document.querySelector(UISelectors.amount).value
             };
         },
-
+        // Fonction pour obtenir la valeur de la catégorie
+        getCategoryInput: function(){
+            return{
+                categoryInput: document.querySelector(UISelectors.category).value
+            };
+        },
+        // Fonction pour obtenir la valeur de la sous-catégorie
+        getSubCategoryInput: function(){
+            return{
+                subCategoryInput: document.querySelector(UISelectors.subCategory).value
+            };
+        },
         // Fonction pour obtenir la valeur de la date
         getDateInput: function(){
             return{
-                dateInput: new Date(document.querySelector('#date').value)
-            };
+                 dateInput: document.querySelector('#date').value
+                };
         },
-        //Fonction pour obtenir le choix d'utilisateur 
-        // getCategoriesInput: function(){
-        //     return categories;
-        // }
-
-
+        
+        // Fonction pour obtenir la liste des catégories
+        getCategories: function(){
+            return categories;
+        },
+        // Fonction pour mettre à jour les options de catégorie
+        updateCategoryOptions: function(){
+            const categorySelect = document.querySelector(UISelectors.category);
+            let optionsHTML = '';
+            for(let category in categories){
+                optionsHTML += `<option value="${category}">${category}</option>`;
+            }
+            categorySelect.innerHTML = optionsHTML;
+        },
+        // Fonction pour mettre à jour les options de sous-catégorie
+        updateSubCategoryOptions: function(selectedCategory){
+            const subCategorySelect = document.querySelector(UISelectors.subCategory);
+            const subCategories = categories[selectedCategory];
+            let optionsHTML = '';
+            if(subCategories){
+                subCategories.forEach(subCategory => {
+                    optionsHTML += `<option value="${subCategory}">${subCategory}</option>`;
+                });
+            }
+            subCategorySelect.innerHTML = optionsHTML;
+        },
         // Fonction pour ajouter un élément de revenu à l'interface utilisateur
         addIncomeItem: function(item){
             // Créer une nouvelle div
@@ -70,8 +108,7 @@ const UICtrl = (function(){
                 <span class="income__amount">${item.amount}</span>
                 <p class="date">${item.date.toLocaleDateString()}</p>
             </div>
-            <i class="far fa-trash-alt"></i>
-            `;
+            <i class="far fa-trash-alt"></i>`;
             // Insérer le revenu dans la liste
             document.querySelector(UISelectors.incomeList).insertAdjacentElement('beforeend', div);
         },
@@ -104,14 +141,15 @@ const UICtrl = (function(){
             div.id = `item-${item.id}`;
             // Ajouter du HTML
             div.innerHTML = `
-            <h4>${item.description}</h4>
-            <div class="item__expense">
-                <p class="symbol">$</p>
-                <span class="expense__amount">${item.amount}</span>
-                <p class="date">${item.date.toLocaleDateString()}</p> 
-            </div>
-            <i class="far fa-trash-alt"></i>
-            `;
+             <h4>${item.description}</h4>
+             <div class="item__expense">
+                 <p class="symbol">$</p>
+                 <span class="expense__amount">${item.amount}</span>
+                 <p class="date">${item.date.toLocaleDateString()}</p> 
+        
+             </div>
+             <i class="far fa-trash-alt"></i>
+             `;
             // Insérer la dépense dans la liste
             document.querySelector(UISelectors.expensesList).insertAdjacentElement('beforeend', div);
         },
@@ -148,6 +186,7 @@ const UICtrl = (function(){
             }
         }
     }
-})();
+    
+})()
 
 export default UICtrl;

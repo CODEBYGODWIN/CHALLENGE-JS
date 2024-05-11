@@ -3,11 +3,13 @@ import UICtrl from './UICtrl.js';
 // CONTRÔLEUR DES ARTICLES
 const itemCtrl = (function(){
     // Constructeur d'objet pour les articles
-    const Item = function(id, description, amount, date){
+    const Item = function(id, description, amount, date, category, subCategory){
         this.id = id;
         this.description = description;
         this.amount = amount;
         this.date = date;
+        this.category = category;
+        this.subCategory = subCategory;
     }
     // Structure de données
     const data = {
@@ -20,18 +22,19 @@ const itemCtrl = (function(){
             return data;
         },
         // Fonction pour ajouter un montant (revenu ou dépense)
-        addMoney: function(description, amount){
-            // Créer un identifiant aléatoire
-            let ID = itemCtrl.createID();
-            // Obtenir la date de l'interface utilisateur
-            let date = UICtrl.getDateInput().dateInput;
-            // Créer un nouvel article
-            let newMoney = new Item(ID, description, amount, date);
-            // Ajouter l'article dans le tableau
-            data.items.push(newMoney);
+addMoney: function(description, amount, category, subCategory){
+    // Créer un identifiant aléatoire
+    let ID = itemCtrl.createID();
+    // Obtenir la date de l'interface utilisateur
+    //let date = UICtrl.getDateInput().dateInput;
+    let date = new Date(UICtrl.getDateInput().dateInput);
+    // Créer un nouvel article
+    let newMoney = new Item(ID, description, amount, date, category, subCategory);
+    // Ajouter l'article dans le tableau
+    data.items.push(newMoney);
 
-            return newMoney;
-        },
+    return newMoney;
+},
         // Fonction pour créer un identifiant aléatoire
         createID: function(){
             // Créer un numéro d'identifiant aléatoire entre 0 et 10000
@@ -67,5 +70,3 @@ const itemCtrl = (function(){
 })();
 
 export default itemCtrl;
-
-

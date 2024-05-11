@@ -3,74 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./static/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <title>Budget App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <title>App</title>
 </head>
 <body>
     <div class="container">
-        <div class="budget__numbers">
-            <div id="earned" class="number">
-                <small>Money Earned</small>
-                <div class="amount__container">
-                    <p id="earned__symbol">$</p>
-                    <span id="amount__earned"></span>
-                </div>
-            </div>
-            <div id="available" class="number">
-                <small>Money Available</small>
-                <div class="amount__container">
-                    <p>$</p>
-                    <span id="amount__available"></span>
-                </div>
-            </div>
-            <div id="spent" class="number">
-                <small>Money Spent</small>
-                <div class="amount__container">
-                    <p id="spent__symbol">$</p>
-                    <span id="amount__spent"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="input__area">
+        <h1>Budget App</h1>
+        <div class="form">
             <input type="text" id="description" placeholder="Description">
             <input type="number" id="amount" placeholder="Amount">
-            <input type="date" id="date" placeholder="Date">
-        </div>
-
-        <div class="buttons__area">
+            <select id="category">
+                <option value="" selected disabled>Choose category...</option>
+            </select>
+            <select id="subCategory">
+                <option value="" selected disabled>Choose sub-category...</option>
+            </select>
+            <input type="date" id="date">
             <button id="add__income">Add Income</button>
             <button id="add__expense">Add Expense</button>
+        </div>
+        <div class="totals">
+            <div>
+                <h3>Total Earned:</h3>
+                <p id="amount__earned">0.00</p>
+            </div>
+            <div>
+                <h3>Total Spent:</h3>
+                <p id="amount__spent">0.00</p>
+            </div>
+            <div>
+                <h3>Available Balance:</h3>
+                <p id="amount__available">0.00</p>
+            </div>
         </div>
         <div class="items__container">
             <div id="income__container" class="container">
                 <h2>Income</h2>
-                <!-- <div class="item income">
-                    <h4>Stuff sold</h4>
-                    <div class="item__income">
-                        <p class="symbol">$</p>
-                        <span class="income__amount">200</span>
-                    </div>
-                    <i class="far fa-trash-alt"></i>
-                </div> -->
             </div>
             <div id="expenses__container" class="container">
                 <h2>Expenses</h2>
-                <!-- <div class="item expense">
-                    <h4>Stuff bought</h4>
-                    <div class="item__expense">
-                        <p class="symbol">$</p>
-                        <span class="expense__amount">200</span>
-                    </div>
-                    <i class="far fa-trash-alt"></i>
-                </div> -->
             </div>
         </div>
     </div>
-    <script type="module" src="../CHALLENGE-JS/java-s/App.js"></script>
-    <!-- <script type="module" src="../Function/UICtrl.js"></script> -->
-    <!-- <script type="module" src="../Function/itemCtrl.js"></script> -->
+    <script type="module" src="../java-s/App.js"></script>
 </body>
 </html>
+
