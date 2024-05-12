@@ -1,77 +1,57 @@
 import UICtrl from './UICtrl.js';
 
-// CONTRÔLEUR DES ARTICLES
 const itemCtrl = (function(){
-    // Constructeur d'objet pour les articles
-    const Item = function(id, description, amount, date, type){ // Ajoutez un paramètre type
+    const Item = function(id, description, amount, date, type){
         this.id = id;
         this.description = description;
         this.amount = amount;
         this.date = date;
-        this.type = type; // Stockez le type (revenu ou dépense)
+        this.type = type;
     }
-    // Structure de données
+
     const data = {
         items:[]
     }
-    // Méthodes publiques
+
     return{
-        // Fonction pour afficher les données dans la console
         logData: function(){
             return data;
         },
-        // Fonction pour ajouter un montant (revenu ou dépense)
+
         addMoney: function(description, amount, type){
-            // Créer un identifiant aléatoire
-            let ID = itemCtrl.createID();
-            // Obtenir la date de l'interface utilisateur
-            let date = UICtrl.getDateInput().dateInput;
-            // Créer un nouvel article
-            let newMoney = new Item(ID, description, amount, date, type);
-            // Ajouter l'article dans le tableau
+            const ID = itemCtrl.createID();
+            const date = UICtrl.getDateInput().dateInput;
+            const newMoney = new Item(ID, description, amount, date, type);
             data.items.push(newMoney);
 
             return newMoney;
         },
 
-        // Fonction pour récupérer tous les revenus
         getIncomes: function() {
             return data.items.filter(item => item.type === "income");
         },
 
-        // Fonction pour récupérer toutes les dépenses
         getExpenses: function() {
             return data.items.filter(item => item.type === "expense");
         },
 
-
-        // Fonction pour créer un identifiant aléatoire
         createID: function(){
-            // Créer un numéro d'identifiant aléatoire entre 0 et 10000
             const idNum = Math.floor(Math.random()*10000);
             return idNum;
         },
-        // Fonction pour obtenir le numéro d'identifiant d'un article
-        getIdNumber: function(item){
-            // Obtenir l'identifiant de l'article
-            const amountId = item.parentElement.id;
-            // Diviser l'identifiant en un tableau
-            const itemArr = amountId.split('-');
-            // Obtenir le numéro d'identifiant
-            const id = parseInt(itemArr[1]);
 
+        getIdNumber: function(item){
+            const amountId = item.parentElement.id;
+            const itemArr = amountId.split('-');
+            const id = parseInt(itemArr[1]);
             return id;
         },
-        // Fonction pour supprimer un montant du tableau de données
+        
         deleteAmountArr: function(id){
-            // Obtenir tous les identifiants
             const ids = data.items.map(function(item){
-                // Retourner l'identifiant de l'article
                 return item.id
             });
-            // Obtenir l'index
             const index = ids.indexOf(id);
-            // Supprimer l'article
             if(index !== -1) {
                 data.items.splice(index, 1);
             }

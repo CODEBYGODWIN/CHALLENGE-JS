@@ -19,41 +19,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     loginForm.addEventListener('submit', function(event) {
+
         event.preventDefault();
-        
-        console.log('Formulaire de connexion soumis');
-    
-        const firstName = document.getElementById('loginName').value;
+        const mail = document.getElementById('loginMail').value;
         const password = document.getElementById('loginPassword').value;
-    
-        console.log('Prénom:', firstName);
-        console.log('Mot de passe:', password);
         
         fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ firstName, password })
+            body: JSON.stringify({ mail, password })
         })
         .then(response => {
             console.log('Réponse de la requête:', response);
             if (response.ok) {
-                localStorage.setItem('userEmail', firstName);
-                const bro = localStorage.getItem('userEmail');
-                console.log(bro);
-                window.location.href = '/budget2.html';
+                localStorage.setItem('userEmail', mail);
+                window.location.href = '/budget.html';
             } else if (response.status === 401) {
-                // Alerte si les identifiants sont incorrects
                 alert('Identifiants incorrects. Veuillez réessayer.');
             } else {
                 throw new Error('Erreur lors de la connexion.');
             }
         })
-        /*.then(data => {
-            // Stocker l'email de l'utilisateur dans le stockage local
-           
-        })*/
         .catch(error => {
             console.error('Erreur lors de la connexion :', error);
             alert('Une erreur est survenue lors de la connexion. Veuillez réessayer.');
@@ -61,8 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     registerForm.addEventListener('submit', function(event) {
+
         event.preventDefault();
-        
         const email = document.getElementById('registerEmail').value;
         const password = document.getElementById('registerPassword').value;
         const firstName = document.getElementById('registerFirstName').value;
@@ -77,10 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (response.ok) {
-                // Alerte si le compte est créé avec succès
                 alert('Compte créé avec succès.');
-                // Réinitialisation du formulaire d'inscription
                 registerForm.reset();
+                window.location.href = '/connect.html';
             } else {
                 throw new Error('Erreur lors de la création du compte.');
             }

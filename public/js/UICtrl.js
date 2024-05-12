@@ -38,8 +38,12 @@ const UICtrl = (function(){
 
         getDateInput: function(){
             return{
-                dateInput: new Date(document.querySelector('#date').value)
+                dateInput: new Date(document.querySelector('#date').value).toLocaleDateString('fr-FR')
             };
+        },
+
+        getCategories: function(){
+            return categories;
         },
 
         addIncomeItem: function(item){
@@ -53,9 +57,23 @@ const UICtrl = (function(){
                 <span class="income__amount">${item.amount}</span>
                 <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
             </div>
-            <i class="far fa-trash-alt"></i>
-            `;
+            <i class="far fa-trash-alt"></i>`;
             document.querySelector(UISelectors.incomeList).insertAdjacentElement('beforeend', div);
+        },
+
+        addExpenseItem: function(item){
+            const div = document.createElement('div');
+            div.classList = 'item expense';
+            div.id = `item-${item.id}`;
+            div.innerHTML = `
+            <h4>${item.description}</h4>
+            <div class="item__expense">
+                <p class="symbol">$</p>
+                <span class="expense__amount">${item.amount}</span>
+                <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
+            </div>
+            <i class="far fa-trash-alt"></i>`;
+            document.querySelector(UISelectors.expensesList).insertAdjacentElement('beforeend', div);
         },
 
         populateItemList: function(incomes, expenses){
@@ -89,22 +107,6 @@ const UICtrl = (function(){
             },0);
             const earnedTotal = document.querySelector(UISelectors.moneyEarned);
             earnedTotal.innerHTML = incomeSum.toFixed(2);
-        },
-
-        addExpenseItem: function(item){
-            const div = document.createElement('div');
-            div.classList = 'item expense';
-            div.id = `item-${item.id}`;
-            div.innerHTML = `
-            <h4>${item.description}</h4>
-            <div class="item__expense">
-                <p class="symbol">$</p>
-                <span class="expense__amount">${item.amount}</span>
-                <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
-            </div>
-            <i class="far fa-trash-alt"></i>
-            `;
-            document.querySelector(UISelectors.expensesList).insertAdjacentElement('beforeend', div);
         },
 
         updateSpent: function(){
