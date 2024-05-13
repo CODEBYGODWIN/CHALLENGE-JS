@@ -213,23 +213,33 @@ max-width: 70%;
 
 }
 
+.itemIncome,
+.itemExpense{
+display: flex;
+flex-direction: column;
+text-align: center;
+}
 
 
-.itemIncome section,
-.expense section{
+.itemIncome div,
+.itemExpense div{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    
 }
 
-.itemIncome p,
-.expense p{
-    max-width: 200px;
-    margin: auto 10px;
+.itemIncome h4,
+.itemExpense h4{
+
 }
 
-.itemIncome section p,
-.expense section p{
-    margin: 0px 2px;
+.itemIncome div p,
+.itemExpense div p{
+    margin: 5px 2px;
+
 }
 
 
@@ -253,7 +263,7 @@ max-width: 70%;
 
 .spanSupr{
     cursor: pointer;
-    padding: 5px;
+    padding: 10px 30px;
 }
 
 .spanSupr:hover{

@@ -48,31 +48,38 @@ const UICtrl = (function(){
 
         addIncomeItem: function(item){
             const div = document.createElement('div');
-            div.classList = 'item income';
+            div.classList = 'item income itemIncome';
             div.id = `item-${item.id}`;
             div.innerHTML = `
             <h4>${item.description}</h4>
             <div class="item__income">
+                <p class="income__amount">${item.amount}</p>
                 <p class="symbol">$</p>
-                <span class="income__amount">${item.amount}</span>
+            </div>
+            <div class="date">
                 <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
             </div>
-            <i class="far fa-trash-alt"></i>`;
+            <div class="item__category">
+                <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
+                <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
+
+            </div>
+            <i class=" spanSupr far fa-trash-alt"></i>`;
             document.querySelector(UISelectors.incomeList).insertAdjacentElement('beforeend', div);
         },
 
         addExpenseItem: function(item){
             const div = document.createElement('div');
-            div.classList = 'item expense';
+            div.classList = 'item expense itemExpense';
             div.id = `item-${item.id}`;
             div.innerHTML = `
             <h4>${item.description}</h4>
             <div class="item__expense">
-                <p class="symbol">$</p>
                 <span class="expense__amount">${item.amount}</span>
+                <p class="symbol">$</p>
                 <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
             </div>
-            <i class="far fa-trash-alt"></i>`;
+            <i class="spanSupr far fa-trash-alt"></i>`;
             document.querySelector(UISelectors.expensesList).insertAdjacentElement('beforeend', div);
         },
 
