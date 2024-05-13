@@ -1,12 +1,14 @@
 import UICtrl from './UICtrl.js';
 
 const itemCtrl = (function(){
-    const Item = function(id, description, amount, date, type){
+    const Item = function(id, description, amount, date, type, category, subCategory){
         this.id = id;
         this.description = description;
         this.amount = amount;
         this.date = date;
         this.type = type;
+        this.category = category;
+        this.subCategory = subCategory;
     }
 
     const data = {
@@ -18,12 +20,11 @@ const itemCtrl = (function(){
             return data;
         },
 
-        addMoney: function(description, amount, type){
+        addMoney: function(description, amount, type, category, subCategory){
             const ID = itemCtrl.createID();
             const date = UICtrl.getDateInput().dateInput;
-            const newMoney = new Item(ID, description, amount, date, type);
+            const newMoney = new Item(ID, description, amount, date, type, category, subCategory);
             data.items.push(newMoney);
-
             return newMoney;
         },
 

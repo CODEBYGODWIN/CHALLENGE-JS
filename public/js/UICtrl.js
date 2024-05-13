@@ -1,9 +1,5 @@
 const UICtrl = (function(){
 
-    const categories = { "Dépenses courantes": ["Alimentation", "Transport"], 
-        "Dépenses personnelles" : ["Vêtements et accessoires", "Soins personnels"]
-    };
-    
     const UISelectors = {
         incomeBtn: '#add__income',
         expenseBtn: '#add__expense',
@@ -16,8 +12,27 @@ const UICtrl = (function(){
         expensesList: '#expenses__container',
         incomeItem: '.income__amount',
         expenseItem: '.expense__amount',
-        itemsContainer: '.items__container'
+        itemsContainer: '.items__container',
+        category: '#category',
+        subCategory: '#subCategory'
     }
+
+    const categories = {
+        "Revenus": ["Salaire", "Prestations", "Ventes", "Autres revenus"],
+        "Alimentation" : ["Restaurants", "Épicerie", "Fast-food", "Cafés"],
+        "Transport" : ["Essence", "Transport en commun", "Taxi/VTC", "Location de voiture"],
+        "Logement": ["Loyers", "Hypothèque", "Factures d'électricité", "Factures d'eau", "Factures d'internet"],
+        "Loisirs": ["Cinéma", "Sorties", "Abonnements", "Vacances"],
+        "Santé": ["Médecin", "Pharmacie", "Assurance santé", "Soins dentaires"],
+        "Vêtements": ["Vêtements", "Chaussures", "Accessoires"],
+        "Éducation" : ["Frais de scolarité", "Livres et fournitures", "Cours particuliers"],
+        "Famille" : ["Garderie", "Jouets", "Vêtements pour enfants"],
+        "Services" : ["Téléphone portable", "Internet", "Assurances"],
+        "Autres" : ["Divers", "Dépenses imprévues"],
+        "Épargne et investissement": ["Épargne d'urgence", "Épargne pour les objectifs à court terme", "Épargne pour les objectifs à long terme", "Investissements"],
+        "Dépenses liées aux finances": ["Remboursement de prêts", "Frais bancaires", "Investissements"],
+        
+    };
 
     return{
         getSelectors: function(){
@@ -42,6 +57,18 @@ const UICtrl = (function(){
             };
         },
 
+        getCategoryInput: function(){
+            return{
+                categoryInput: document.querySelector(UISelectors.category).value
+            };
+        },
+
+        getSubCategoryInput: function(){
+            return{
+                subCategoryInput: document.querySelector(UISelectors.subCategory).value
+            };
+        },
+
         getCategories: function(){
             return categories;
         },
@@ -56,6 +83,8 @@ const UICtrl = (function(){
                 <p class="symbol">$</p>
                 <span class="income__amount">${item.amount}</span>
                 <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
+                <p class="category">${item.category}</p>
+                <p class="subCategory">${item.subCategory}</p>
             </div>
             <i class="far fa-trash-alt"></i>`;
             document.querySelector(UISelectors.incomeList).insertAdjacentElement('beforeend', div);
@@ -71,6 +100,8 @@ const UICtrl = (function(){
                 <p class="symbol">$</p>
                 <span class="expense__amount">${item.amount}</span>
                 <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
+                <p class="category">${item.category}</p>
+                <p class="subCategory">${item.subCategory}</p>
             </div>
             <i class="far fa-trash-alt"></i>`;
             document.querySelector(UISelectors.expensesList).insertAdjacentElement('beforeend', div);
@@ -92,6 +123,27 @@ const UICtrl = (function(){
             UICtrl.updateSpent();
             UICtrl.updateAvailable();
             UICtrl.updateEarned();
+        },
+
+        updateCategoryOptions: function(){
+            const categorySelect = document.querySelector(UISelectors.category);
+            let optionsHTML = '';
+            for(const category in categories){
+                optionsHTML += `<option value="${category}">${category}</option>`;
+            }
+            categorySelect.innerHTML = optionsHTML;
+        },
+
+        updateSubCategoryOptions: function(selectedCategory){
+            const subCategorySelect = document.querySelector(UISelectors.subCategory);
+            const subCategories = categories[selectedCategory];
+            let optionsHTML = '';
+            if(subCategories){
+                subCategories.forEach(subCategory => {
+                    optionsHTML += `<option value="${subCategory}">${subCategory}</option>`;
+                });
+            }
+            subCategorySelect.innerHTML = optionsHTML;
         },
 
         clearInputs: function(){

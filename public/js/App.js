@@ -8,6 +8,7 @@ const App = (function(itemCtrl, UICtrl){
         const expenseBtn = document.querySelector(UISelectors.expenseBtn);
         const itemsContainer = document.querySelector(UISelectors.itemsContainer);
         document.querySelector(UISelectors.itemsContainer).addEventListener('click', deleteItem);
+        document.querySelector(UISelectors.category).addEventListener('change', categoryChange);
     
         if (incomeBtn) {
             incomeBtn.addEventListener('click', addIncome);
@@ -19,12 +20,19 @@ const App = (function(itemCtrl, UICtrl){
             itemsContainer.addEventListener('click', deleteItem);
         }
     };
+
+    const categoryChange = function(){
+        const selectedCategory = UICtrl.getCategoryInput().categoryInput;
+        UICtrl.updateSubCategoryOptions(selectedCategory);
+    }
     
     const addIncome = function(){
         const description = UICtrl.getDescriptionInput();
         const amount = UICtrl.getValueInput();
+        const category = UICtrl.getCategoryInput();
+        const subCategory = UICtrl.getSubCategoryInput();
         if(description.descriptionInput !=='' && amount.amountInput !== ''){
-            const newMoney = itemCtrl.addMoney(description.descriptionInput, amount.amountInput, 'income');
+            const newMoney = itemCtrl.addMoney(description.descriptionInput, amount.amountInput, 'income', category.categoryInput, subCategory.subCategoryInput);
             UICtrl.addIncomeItem(newMoney);
             UICtrl.clearInputs();
             UICtrl.updateEarned();
@@ -36,8 +44,10 @@ const App = (function(itemCtrl, UICtrl){
     const addExpense = function(){
         const description = UICtrl.getDescriptionInput();
         const amount = UICtrl.getValueInput();
+        const category = UICtrl.getCategoryInput();
+        const subCategory = UICtrl.getSubCategoryInput();
         if(description.descriptionInput !=='' && amount.amountInput !== ''){
-            const newMoney = itemCtrl.addMoney(description.descriptionInput, amount.amountInput, 'expense');
+            const newMoney = itemCtrl.addMoney(description.descriptionInput, amount.amountInput, 'expense', category.categoryInput, subCategory.subCategoryInput);
             UICtrl.addExpenseItem(newMoney);
             UICtrl.clearInputs();
             UICtrl.updateSpent();
@@ -101,6 +111,7 @@ const App = (function(itemCtrl, UICtrl){
             UICtrl.updateEarned();
             UICtrl.updateSpent();
             UICtrl.updateAvailable();
+            UICtrl.updateCategoryOptions();
             loadEventListeners();
         }
     }
