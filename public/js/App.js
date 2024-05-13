@@ -38,6 +38,7 @@ const App = (function(itemCtrl, UICtrl){
             UICtrl.updateEarned();
             UICtrl.updateAvailable();
             saveDataLocally();
+            location.reload();
         }
     }
 
@@ -53,6 +54,7 @@ const App = (function(itemCtrl, UICtrl){
             UICtrl.updateSpent();
             UICtrl.updateAvailable();
             saveDataLocally();
+            location.reload();
         }
     }
 
@@ -65,6 +67,7 @@ const App = (function(itemCtrl, UICtrl){
             UICtrl.updateSpent();
             UICtrl.updateAvailable();
             removeItemLocally(id);
+            location.reload();
         }
         e.preventDefault();
     }
