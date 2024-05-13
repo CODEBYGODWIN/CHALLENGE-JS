@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Comptes</title>
+    <link rel="stylesheet" href="./static/count.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+</head>
+<body>
+    <section class="bg">
+    </section>
+    <header>
+        <h1><a href="">Mes Comptes</a></h1>
+        <button class="deconexion"><a href="connect.html">Se deconecter</a></button>
+    </header>
+    <main>
+        <section class="container">
+            <section class="budgetNumber">
+                <section class="number moneyEarned" id="earned">
+                    <p>Ajouts</p>
+                    <section class="amountContainer nbEarned">
+                        <p id="amount__earned"></p>
+                        <p id="earned__symbol">€</p>
+                    </section>
+                </section>
+        
+                <section class="number moneyAvailable" id="available">
+                    <p>Argent disponible</p>
+                    <section class="amountContainer nbAvailable">
+                        <p id="amount__available"></p>
+                        <p>€</p>
+                    </section>
+                </section>
+        
+                <section class="number moneySpent" id="spent">
+                    <p>Dépenses</p>
+                    <section class="amountContainer nbpent">
+                        <p id="amount__spent"></p>
+                        <p id="spent__symbol">€</p>
+                    </section>
+                </section>
+            </section>
+
+            <!-- form -->
+    
+            <form class="inputContainer">
+                <select id="category">
+                    <option value="" disabled selected>Choose Category</option>
+                    <option value="Dépenses courantes">Dépenses courantes</option>
+                    <option value="Dépenses personnelles">Dépenses personnelles</option>
+                </select>
+                <select id="subcategory">
+                    <option value="" disabled selected>Choose Subcategory</option>
+                </select>
+                <input type="text" class="description" id="description" placeholder="Description">
+                <input type="date" class="date" id="date">
+                <input type="number" class="amount" id="amount" placeholder="Montant">
+                
+            </form>
+    
+            <section class="btnContainer">
+                <button class="addIncome" id="add__income">Ajouter de l'argent</button>
+                <button class="addExpense" id="add__expense">Retirer de l'argent</button>
+            </section>
+
+
+
+
+
+    
+            <section class="items__container">
+
+                <!-- Argent ajouté -->
+                <section class="containerCount" id="income__container">
+                    <h2>Argent ajouté</h2>
+
+
+
+
+                    <!-- <section class="itemIncome">
+                        <p>descrition de l'ajout d'argent1</p>
+                        <section>
+                            <p>10</p>
+                            <p>€</p>
+                        </section>
+                        <span class="spanSupr mdi mdi-trash-can-outline"></span>
+                    </section> -->
+
+            
+                </section>
+
+
+
+
+                <!-- Argent dépensé -->
+
+                <section class="containerCount" id="expenses__container">
+                    <h2>Argent dépensé</h2>
+                    <!-- <section  class="expense">
+                        <p>descrition de la depense1</p>
+                        <section class="itemExpense">
+                            <p>10</p>
+                            <p>€</p>
+                            
+                        </section>
+                        <span class="spanSupr mdi mdi-trash-can-outline"></span>
+                    </section> -->
+
+
+                </section>
+            </section>
+        </section> 
+
+        <canvas id="graphCount">
+
+        </canvas>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    
+
+    </main>
+    <footer>
+
+    </footer>
+    <script type="module" src="js/App.js"></script>
+    <!-- <script type="module" src="../Function/UICtrl.js"></script> -->
+    <!-- <script type="module" src="../Function/itemCtrl.js"></script> -->
+
+    <script src="./deco/bg.js"></script>
+    <script src="./deco/graphCount.js"></script>
+
+
+</body>
+</html>
