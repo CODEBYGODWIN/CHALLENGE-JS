@@ -11,48 +11,49 @@ const itemCtrl = (function(){
         this.category = category;
         this.subCategory = subCategory;
     }
+
     // Structure de données
     const data = {
         items:[]
     }
-    // Méthodes publiques
+
     return{
         // Fonction pour afficher les données dans la console
         logData: function(){
             return data;
         },
-        // Fonction pour ajouter un montant (revenu ou dépense)
-addMoney: function(description, amount, category, subCategory){
-    // Créer un identifiant aléatoire
-    let ID = itemCtrl.createID();
-    // Obtenir la date de l'interface utilisateur
-    //let date = UICtrl.getDateInput().dateInput;
-    let date = new Date(UICtrl.getDateInput().dateInput);
-    // Créer un nouvel article
-    let newMoney = new Item(ID, description, amount, date, category, subCategory);
-    // Ajouter l'article dans le tableau
-    data.items.push(newMoney);
 
-    return newMoney;
-},
+        // Fonction pour ajouter un montant (revenu ou dépense)
+        addMoney: function(description, amount, category, subCategory){
+            // Créer un identifiant aléatoire
+            let ID = itemCtrl.createID();
+            // Obtenir la date de l'interface utilisateur
+            let date = new Date(UICtrl.getDateInput().dateInput);
+            // Créer un nouvel article
+            let newMoney = new Item(ID, description, amount, date, category, subCategory);
+            // Ajouter l'article dans le tableau
+            data.items.push(newMoney);
+
+            return newMoney;
+        },
+
         // Fonction pour créer un identifiant aléatoire
         createID: function(){
             // Créer un numéro d'identifiant aléatoire entre 0 et 10000
             const idNum = Math.floor(Math.random()*10000);
             return idNum;
         },
+
         // Fonction pour obtenir le numéro d'identifiant d'un article
         getIdNumber: function(item){
-            // Obtenir l'identifiant de l'article
             const amountId = item.parentElement.id;
-            // Diviser l'identifiant en un tableau
             const itemArr = amountId.split('-');
-            // Obtenir le numéro d'identifiant
             const id = parseInt(itemArr[1]);
 
             return id;
         },
-        // Fonction pour supprimer un montant du tableau de données
+
+        // Fonction pour supprimer un montant du tableau de données en fonction de l'identifiant
         deleteAmountArr: function(id){
             // Obtenir tous les identifiants
             const ids = data.items.map(function(item){
@@ -61,7 +62,6 @@ addMoney: function(description, amount, category, subCategory){
             });
             // Obtenir l'index
             const index = ids.indexOf(id);
-            // Supprimer l'article
             if(index !== -1) {
                 data.items.splice(index, 1);
             }

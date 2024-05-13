@@ -9,20 +9,14 @@ const App = (function(itemCtrl, UICtrl){
         const UISelectors = UICtrl.getSelectors();
         // Mettre à jour les options de sous-catégorie en fonction de la catégorie sélectionnée
         document.querySelector(UISelectors.category).addEventListener('change', categoryChange);
-        // Ajouter un nouveau revenu
         document.querySelector(UISelectors.incomeBtn).addEventListener('click', addIncome);
-        // Ajouter une nouvelle dépense
         document.querySelector(UISelectors.expenseBtn).addEventListener('click', addExpense);
-        // Supprimer un article
         document.querySelector(UISelectors.itemsContainer).addEventListener('click', deleteItem);
-        // Ajouter un écouteur d'événements pour supprimer un montant
-        //UICtrl.addDeleteEventListener();
     }
 
     // Mettre à jour les options de sous-catégorie en fonction de la catégorie sélectionnée
     const categoryChange = function(){
         const selectedCategory = UICtrl.getCategoryInput().categoryInput;
-        console.log(selectedCategory);
         UICtrl.updateSubCategoryOptions(selectedCategory);
     }
 
@@ -33,20 +27,15 @@ const App = (function(itemCtrl, UICtrl){
         const amount = UICtrl.getValueInput();
         const category = UICtrl.getCategoryInput();
         const subCategory = UICtrl.getSubCategoryInput();
-        console.log(category, subCategory);
         // Si les champs ne sont pas vides
         if(description.descriptionInput !=='' && amount.amountInput !== '' && category.categoryInput !== '' && subCategory.subCategoryInput !== ''){
             // Ajouter un nouvel article
             const newMoney = itemCtrl.addMoney(description.descriptionInput, amount.amountInput, category.categoryInput, subCategory.subCategoryInput);
             // Ajouter l'article à la liste
             UICtrl.addIncomeItem(newMoney);
-            // Effacer les champs de saisie
             UICtrl.clearInputs();
-            // Mettre à jour le total des dépenses
             UICtrl.updateSpent();
-            // Mettre à jour le total des revenus
             UICtrl.updateEarned();
-            // Calculer le solde disponible
             UICtrl.updateAvailable();
         }
     }
@@ -58,51 +47,40 @@ const App = (function(itemCtrl, UICtrl){
         const amount = UICtrl.getValueInput();
         const category = UICtrl.getCategoryInput();
         const subCategory = UICtrl.getSubCategoryInput();
-        console.log(category, subCategory);
+
         // Si les champs ne sont pas vides
         if(description.descriptionInput !=='' && amount.amountInput !== '' && category.categoryInput !== '' && subCategory.subCategoryInput !== ''){
-            // Ajouter un nouvel article
             const newMoney = itemCtrl.addMoney(description.descriptionInput, amount.amountInput, category.categoryInput, subCategory.subCategoryInput);
             // Ajouter l'article à la liste
             UICtrl.addExpenseItem(newMoney);
-            // Effacer les champs de saisie
             UICtrl.clearInputs();
-            // Mettre à jour le total des dépenses
             UICtrl.updateSpent();
-            // Mettre à jour le total des revenus
             UICtrl.updateEarned();
-            // Calculer le solde disponible
             UICtrl.updateAvailable();
         }
     }
 
-    // Supprimer un article
+    // Supprimer un article de la liste d'articles de l'interface utilisateur.
     const deleteItem = function(e){
         if(e.target.classList.contains('fa-trash-alt')){
             // Obtenir le numéro d'identifiant
             const id = itemCtrl.getIdNumber(e.target);
             // Supprimer le montant de l'interface utilisateur
             UICtrl.deleteAmount(id);
-            // Supprimer le montant des données
             itemCtrl.deleteAmountArr(id);
-            // Mettre à jour le total des dépenses
             UICtrl.updateSpent();
-            // Mettre à jour le total des revenus
             UICtrl.updateEarned();
-            // Calculer le solde disponible
             UICtrl.updateAvailable();
         }
 
         e.preventDefault();
     }
 
-    // Fonction d'initialisation
+    // Fonction d'initialisation il ettre à jour les options de catégorie et afficher les données dans la console
     return{
         init: function(){
-            // Mettre à jour les options de catégorie
             UICtrl.updateCategoryOptions();
             loadEventListeners();
-            // Afficher les données dans la console
             console.log(itemCtrl.logData());
         }
     }

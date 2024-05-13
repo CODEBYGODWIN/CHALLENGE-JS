@@ -22,12 +22,20 @@ const UICtrl = (function(){
 
     // Liste des catégories et sous-catégories
     const categories = {
-        "Dépenses courantes": ["Alimentation", "Transport", "Logement", "Factures", "Assurance", "Télécommunications", "Santé", "Divertissement"],
-        "Dépenses personnelles": ["Vêtements et accessoires", "Soins personnels", "Loisirs", "Vacances et voyages", "Cadeaux"],
-        "Dépenses liées à l'éducation": ["Frais de scolarité", "Livres et fournitures scolaires", "Cours et formations"],
-        "Dépenses liées aux finances": ["Remboursement de prêts", "Frais bancaires", "Investissements"],
+        "Revenus": ["Salaire", "Prestations", "Ventes", "Autres revenus"],
+        "Alimentation" : ["Restaurants", "Épicerie", "Fast-food", "Cafés"],
+        "Transport" : ["Essence", "Transport en commun", "Taxi/VTC", "Location de voiture"],
+        "Logement": ["Loyers", "Hypothèque", "Factures d'électricité", "Factures d'eau", "Factures d'internet"],
+        "Loisirs": ["Cinéma", "Sorties", "Abonnements", "Vacances"],
+        "Santé": ["Médecin", "Pharmacie", "Assurance santé", "Soins dentaires"],
+        "Vêtements": ["Vêtements", "Chaussures", "Accessoires"],
+        "Éducation" : ["Frais de scolarité", "Livres et fournitures", "Cours particuliers"],
+        "Famille" : ["Garderie", "Jouets", "Vêtements pour enfants"],
+        "Services" : ["Téléphone portable", "Internet", "Assurances"],
+        "Autres" : ["Divers", "Dépenses imprévues"],
         "Épargne et investissement": ["Épargne d'urgence", "Épargne pour les objectifs à court terme", "Épargne pour les objectifs à long terme", "Investissements"],
-        "Revenus": ["Salaire"]
+        "Dépenses liées aux finances": ["Remboursement de prêts", "Frais bancaires", "Investissements"],
+        
     };
 
     // Méthodes publiques
