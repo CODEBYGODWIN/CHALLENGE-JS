@@ -115,6 +115,8 @@ const UICtrl = (function(){
                 <p class="symbol">$</p>
                 <span class="income__amount">${item.amount}</span>
                 <p class="date">${item.date.toLocaleDateString()}</p>
+                <p class="category">${item.category}</p>
+                <p class="subCategory">${item.subCategory}</p>
             </div>
             <i class="far fa-trash-alt"></i>`;
             // Insérer le revenu dans la liste
@@ -154,7 +156,8 @@ const UICtrl = (function(){
                  <p class="symbol">$</p>
                  <span class="expense__amount">${item.amount}</span>
                  <p class="date">${item.date.toLocaleDateString()}</p> 
-        
+                 <p class="category">${item.category}</p>
+                 <p class="subCategory">${item.subCategory}</p>
              </div>
              <i class="far fa-trash-alt"></i>
              `;
