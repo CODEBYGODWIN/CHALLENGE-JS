@@ -28,7 +28,8 @@ Le projet est structuré en différentes parties :
 
 ## Installation et Exécution
 1. Cloner le dépôt Git du projet.
-2. initialiser un nouveau projet Node.js avec `npm init -y`
-3. Installer les dépendances avec `npm install` (principalement `npm install express` et `npm install sqlite3`).
-4. Lancer le serveur avec `node server.js`.
-5. Accéder à l'application via un navigateur web à l'adresse `http://localhost:3000`.
+2. Supprimer les fichiers package.json, package-lock.json et tout le dossier node_modules.
+3. initialiser un nouveau projet Node.js avec `npm init -y`
+4. Installer les dépendances avec `npm install` (principalement `npm install express` et `npm install sqlite3`).
+5. Lancer le serveur avec `node server.js`.
+6. Accéder à l'application via un navigateur web à l'adresse `http://localhost:3000`.
