@@ -80,7 +80,7 @@ const UICtrl = (function(){
             div.innerHTML = `
             <h4>${item.description}</h4>
             <div class="item__income">
-                <p>montant : <span class="income__amount">${item.amount}</span> $</p>
+                <p>montant : <span class="income__amount">${item.amount}</span> €</p>
                 <p class="date">Date : ${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
                 <p class="category">Catégorie : ${item.category}</p>
                 <p class="subCategory">sous-catégorie : ${item.subCategory}</p>
@@ -96,7 +96,7 @@ const UICtrl = (function(){
             div.innerHTML = `
             <h4>${item.description}</h4>
             <div class="item__expense">
-                <p>montant : <span class="expense__amount">${item.amount}</span> $</p>
+                <p>montant : <span class="expense__amount">${item.amount}</span> €</p>
                 <p class="date">Date : ${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
                 <p class="category">Catégorie : ${item.category}</p>
                 <p class="subCategory">sous-catégorie : ${item.subCategory}</p>

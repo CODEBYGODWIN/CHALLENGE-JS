@@ -89,6 +89,7 @@ const App = (function(itemCtrl, UICtrl){
         const userEmail = localStorage.getItem('userEmail');
         const existingData = localStorage.getItem(`budgetData-${userEmail}`);
         let newData = { incomes: [], expenses: [] };
+        console.log(existingData)
     
         if (existingData) {
             const parsedData = JSON.parse(existingData);
@@ -105,6 +106,7 @@ const App = (function(itemCtrl, UICtrl){
     const loadDataLocally = function(){
         const userEmail = localStorage.getItem('userEmail');
         const budgetData = localStorage.getItem(`budgetData-${userEmail}`);
+        console.log(budgetData)
         if(budgetData){
             const data = JSON.parse(budgetData);
             UICtrl.populateItemList(data.incomes, data.expenses);

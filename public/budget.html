@@ -19,6 +19,7 @@
     <main>
         <section class="container">
             <section class="budgetNumber">
+                <!-- Section pour les ajouts totaux -->
                 <section class="number moneyEarned" id="earned">
                     <p>AJOUTS TOTAUX</p>
                     <section class="amountContainer nbEarned">
@@ -27,6 +28,7 @@
                     </section>
                 </section>
         
+                <!-- Section pour l'argent disponible -->
                 <section class="number moneyAvailable" id="available">
                     <p>ARGENT DISPONIBLE</p>
                     <section class="amountContainer nbAvailable">
@@ -35,6 +37,7 @@
                     </section>
                 </section>
         
+                <!-- Section pour les dépenses totales -->
                 <section class="number moneySpent" id="spent">
                     <p>DEPENSES TOTAUX</p>
                     <section class="amountContainer nbpent">
@@ -44,8 +47,7 @@
                 </section>
             </section>
 
-            <!-- form -->
-    
+            <!-- Formulaire pour ajouter des transactions -->
             <form class="inputContainer">
                 <select id="category">
                     <option value="" disabled selected>Categorie</option>
@@ -59,11 +61,13 @@
                 
             </form>
     
+            <!-- Boutons pour ajouter des transactions -->
             <section class="btnContainer">
                 <button class="addIncome" id="add__income">Ajouter de l'argent</button>
                 <button class="addExpense" id="add__expense">Retirer de l'argent</button>
             </section>
 
+            <!-- Conteneurs pour afficher les transactions -->
             <section class="items__container">
                 <section class="containerCount" id="income__container">
                     <h2>💰GAINS💰</h2>
@@ -75,6 +79,7 @@
             </section>
         </section> 
         <h1><a>GRAPHIQUE</a></h1>
+        <!-- Canvas pour le graphique -->
         <canvas id="graphCount"></canvas>
     </main>
     <footer>
