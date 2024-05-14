@@ -1,7 +1,12 @@
 const graphCount = (function(){
     document.addEventListener("DOMContentLoaded", function () {
+        // Get the canvas element
         const graphCanvas = document.getElementById("graphCount");
+
+        // Get the 2D rendering context
         const ctx = graphCanvas.getContext("2d");
+
+        // Initial data for the chart
         const initialData = {
             labels: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"],
             datasets: [{
@@ -19,6 +24,7 @@ const graphCount = (function(){
             }]
         };
 
+        // Create a new chart instance
         const myChart = new Chart(ctx, {
             type: "bar",
             data: initialData,
@@ -31,17 +37,20 @@ const graphCount = (function(){
             }
         });
 
+        // Function to get the month from a string date
         function getMonthFromStringDate(dateString) {
             const parts = dateString.split('/');
             return parseInt(parts[1]) - 1;
         }
 
+        // Function to update the chart
         function updateChart() {
             const userEmail = localStorage.getItem('userEmail');
             const budgetData = JSON.parse(localStorage.getItem(`budgetData-${userEmail}`));
             const expenses = budgetData.expenses || [];
             const incomes = budgetData.incomes || [];
 
+            // Create a new object to hold updated data for the chart
             const newData = {
                 labels: initialData.labels.slice(),
                 datasets: [{
@@ -77,6 +86,8 @@ const graphCount = (function(){
             myChart.update();
         }
         updateChart();
+
+        // Listen for custom events 'incomeAdded' and 'expenseAdded' and call updateChart function
         document.addEventListener('incomeAdded', updateChart);
         document.addEventListener('expenseAdded', updateChart);
     });

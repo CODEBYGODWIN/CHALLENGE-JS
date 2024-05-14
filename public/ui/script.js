@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Get DOM elements
     const loginContainer = document.getElementById('loginContainer');
     const registerContainer = document.getElementById('registerContainer');
     const showRegisterLink = document.getElementById('showRegister');
@@ -6,24 +7,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     
+     // Event listener to show the register form and hide the login form
     showRegisterLink.addEventListener('click', function(event) {
         event.preventDefault();
         registerContainer.classList.remove('hidden');
         loginContainer.classList.add('hidden');
     });
     
+    // Event listener to show the login form and hide the register form
     showLoginLink.addEventListener('click', function(event) {
         event.preventDefault();
         loginContainer.classList.remove('hidden');
         registerContainer.classList.add('hidden');
     });
 
+    // Event listener for submitting the login form
     loginForm.addEventListener('submit', function(event) {
 
         event.preventDefault();
         const mail = document.getElementById('loginMail').value;
         const password = document.getElementById('loginPassword').value;
         
+        // Send a POST request to the server with login credentials
         fetch('/login', {
             method: 'POST',
             headers: {
@@ -48,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Event listener for submitting the registration form
     registerForm.addEventListener('submit', function(event) {
 
         event.preventDefault();
@@ -56,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const firstName = document.getElementById('registerFirstName').value;
         const lastName = document.getElementById('registerLastName').value;
         
+        // Send a POST request to the server with registration data
         fetch('/register', {
             method: 'POST',
             headers: {

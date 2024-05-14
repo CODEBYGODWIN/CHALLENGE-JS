@@ -83,8 +83,6 @@ h1 a {
 .amountContainer{
     margin-top: -1rem;
     display: flex;
-
-
 }
 
 .amountContainer p{
@@ -144,7 +142,6 @@ max-width: 70%;
     border-radius: 15px;
     outline: none;
     cursor: pointer;
-
 }
 
 .btnContainer .addIncome{
@@ -154,8 +151,6 @@ max-width: 70%;
 
 .btnContainer .addIncome:hover{
     background-color: rgb(0, 64, 0);
-
-    
 }
 
 .btnContainer .addExpense{
@@ -167,25 +162,10 @@ max-width: 70%;
     background-color: rgb(122, 0, 0);
 }
 
-
-
-
-
-
-
-
-
-
-
 .items__container{
     display: flex;
     justify-content: space-around;
     align-items: start;
-
-
-
-
-
 }
 
 @media screen and (max-width: 1000px) {
@@ -198,10 +178,9 @@ max-width: 70%;
 
 .containerCount{
     margin: 20px;
-
 }
 
-.itemIncome,
+.income,
 .expense{
     background-color: white;
     border-radius:15px ;
@@ -210,24 +189,21 @@ max-width: 70%;
     padding: 1em 1em;
     align-items: center;
     margin: 5px 0px;
-
 }
 
-
-
-.itemIncome section,
+.income section,
 .expense section{
     display: flex;
     flex-direction: row;
 }
 
-.itemIncome p,
+.income p,
 .expense p{
     max-width: 200px;
     margin: auto 10px;
 }
 
-.itemIncome section p,
+.income section p,
 .expense section p{
     margin: 0px 2px;
 }

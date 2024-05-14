@@ -80,11 +80,10 @@ const UICtrl = (function(){
             div.innerHTML = `
             <h4>${item.description}</h4>
             <div class="item__income">
-                <p class="symbol">$</p>
-                <span class="income__amount">${item.amount}</span>
-                <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
-                <p class="category">${item.category}</p>
-                <p class="subCategory">${item.subCategory}</p>
+                <p>montant : <span class="income__amount">${item.amount}</span> $</p>
+                <p class="date">Date : ${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
+                <p class="category">Catégorie : ${item.category}</p>
+                <p class="subCategory">sous-catégorie : ${item.subCategory}</p>
             </div>
             <i class="far fa-trash-alt"></i>`;
             document.querySelector(UISelectors.incomeList).insertAdjacentElement('beforeend', div);
@@ -97,11 +96,10 @@ const UICtrl = (function(){
             div.innerHTML = `
             <h4>${item.description}</h4>
             <div class="item__expense">
-                <p class="symbol">$</p>
-                <span class="expense__amount">${item.amount}</span>
-                <p class="date">${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
-                <p class="category">${item.category}</p>
-                <p class="subCategory">${item.subCategory}</p>
+                <p>montant : <span class="expense__amount">${item.amount}</span> $</p>
+                <p class="date">Date : ${item.date instanceof Date ? item.date.toLocaleDateString() : item.date}</p>
+                <p class="category">Catégorie : ${item.category}</p>
+                <p class="subCategory">sous-catégorie : ${item.subCategory}</p>
             </div>
             <i class="far fa-trash-alt"></i>`;
             document.querySelector(UISelectors.expensesList).insertAdjacentElement('beforeend', div);

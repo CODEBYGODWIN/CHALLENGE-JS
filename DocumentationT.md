@@ -1,4 +1,4 @@
-# Documentation du Projet "Mes Comptes"(Application de gestion de budget)
+# Documentation Technique du Projet "Mes Comptes"(Application de gestion de budget)
 
 ## Introduction
 Ce projet "Mes Comptes" est une application web permettant à l'utilisateur de gérer ses finances personnelles en enregistrant ses revenus et ses dépenses. L'application offre également des fonctionnalités d'inscription, de connexion, et de déconnexion pour les utilisateurs. 
