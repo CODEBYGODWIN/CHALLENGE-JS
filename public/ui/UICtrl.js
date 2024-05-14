@@ -33,46 +33,46 @@ const UICtrl = (function(){
         "Dépenses liées aux finances": ["Remboursement de prêts", "Frais bancaires", "Investissements"],
         
     };
-
+    // Retourne les sélecteurs HTML
     return{
         getSelectors: function(){
             return UISelectors;
         },
-
+        // Récupère la description de l'utilisateur
         getDescriptionInput: function(){
             return {
                 descriptionInput: document.querySelector(UISelectors.description).value
             };
         },
-
+        // Récupère le montant entré par l'utilisateur
         getValueInput: function(){
             return{
                 amountInput: document.querySelector(UISelectors.amount).value
             };
         },
-
+        // Récupère la date entrée par l'utilisateur
         getDateInput: function(){
             return{
                 dateInput: new Date(document.querySelector('#date').value).toLocaleDateString('fr-FR')
             };
         },
-
+        // Récupère la catégorie sélectionnée par l'utilisateur
         getCategoryInput: function(){
             return{
                 categoryInput: document.querySelector(UISelectors.category).value
             };
         },
-
+        // Récupère la sous-catégorie sélectionnée par l'utilisateur
         getSubCategoryInput: function(){
             return{
                 subCategoryInput: document.querySelector(UISelectors.subCategory).value
             };
         },
-
+        // Récupère toutes les catégories disponibles
         getCategories: function(){
             return categories;
         },
-
+        // Ajoute un revenu à l'interface utilisateur
         addIncomeItem: function(item){
             const div = document.createElement('div');
             div.classList = 'item income';
@@ -88,7 +88,7 @@ const UICtrl = (function(){
             <i class="far fa-trash-alt"></i>`;
             document.querySelector(UISelectors.incomeList).insertAdjacentElement('beforeend', div);
         },
-
+        // Ajoute une dépense à l'interface utilisateur
         addExpenseItem: function(item){
             const div = document.createElement('div');
             div.classList = 'item expense';
@@ -104,7 +104,7 @@ const UICtrl = (function(){
             <i class="far fa-trash-alt"></i>`;
             document.querySelector(UISelectors.expensesList).insertAdjacentElement('beforeend', div);
         },
-
+        // Remplit la liste des revenus et des dépenses
         populateItemList: function(incomes, expenses){
             incomes.forEach(function(income) {
                 if (income.type === 'income') {
@@ -122,7 +122,7 @@ const UICtrl = (function(){
             UICtrl.updateAvailable();
             UICtrl.updateEarned();
         },
-
+        // Met à jour les options de la liste déroulante des catégories
         updateCategoryOptions: function(){
             const categorySelect = document.querySelector(UISelectors.category);
             let optionsHTML = '';
@@ -131,7 +131,7 @@ const UICtrl = (function(){
             }
             categorySelect.innerHTML = optionsHTML;
         },
-
+        // Met à jour les options de la liste déroulante des sous-catégories en fonction de la catégorie sélectionnée
         updateSubCategoryOptions: function(selectedCategory){
             const subCategorySelect = document.querySelector(UISelectors.subCategory);
             const subCategories = categories[selectedCategory];
@@ -143,12 +143,12 @@ const UICtrl = (function(){
             }
             subCategorySelect.innerHTML = optionsHTML;
         },
-
+        // Efface les champs de saisie
         clearInputs: function(){
             document.querySelector(UISelectors.description).value = '';
             document.querySelector(UISelectors.amount).value = '';
         },
-
+        // Met à jour le total des revenus
         updateEarned: function(){
             const allIncome = document.querySelectorAll(UISelectors.incomeItem);
             const incomeCount = [...allIncome].map(item => +item.innerHTML);
@@ -158,7 +158,7 @@ const UICtrl = (function(){
             const earnedTotal = document.querySelector(UISelectors.moneyEarned);
             earnedTotal.innerHTML = incomeSum.toFixed(2);
         },
-
+        // Met à jour le total des dépenses
         updateSpent: function(){
             const allExpenses = document.querySelectorAll(UISelectors.expenseItem);
             const expenseCount = [...allExpenses].map(item => +item.innerHTML);
@@ -168,14 +168,14 @@ const UICtrl = (function(){
             const expensesTotal = document.querySelector(UISelectors.moneySpent);
             expensesTotal.innerHTML = expenseSum.toFixed(2);
         },
-
+        // Met à jour le solde disponible
         updateAvailable: function(){
             const earned = document.querySelector(UISelectors.moneyEarned);
             const spent = document.querySelector(UISelectors.moneySpent);
             const available = document.querySelector(UISelectors.moneyAvailable);
             available.innerHTML = (parseFloat(earned.innerHTML) - parseFloat(spent.innerHTML)).toFixed(2);
         },
-
+        // Supprime un revenu ou une dépense de l'interface utilisateur
         deleteAmount: function(id){
             const amountId = `#item-${id}`;
             const amountDelete = document.querySelector(amountId);
